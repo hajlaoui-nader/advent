@@ -24,6 +24,7 @@ dependencies:
 - containers
 - clock
 - mtl
+- split
 
 library:
   source-dirs: src

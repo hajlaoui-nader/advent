@@ -9,4 +9,5 @@ inputFp n = "resources/Day" ++ n ++ ".txt"
 argLookup :: [(String, String -> String)]
 argLookup = [ ("01" , day01)
             , ("01b", day01b)
+            , ("02", day02)
          ]
