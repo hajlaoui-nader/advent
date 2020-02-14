@@ -1,0 +1,65 @@
+name:                advent
+version:             0.1.0.0
+github:              "https://github.com/hajlaoui-nader/achiles"
+license:             BSD3
+author:              "h.nader"
+maintainer:          "hajlaoui.nader@egmail.com"
+copyright:           "2019 h.nader"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         lease see the README on GitHub at <https://github.com/hajlaoui-nader/advent#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- containers
+- clock
+- mtl
+
+library:
+  source-dirs: src
+
+executables:
+  advent-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - advent
+
+tests:
+  advent-test:
+    main:                Day01Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - advent
+    - hspec
+
+
+benchmarks:
+  advent-benchmark:
+    main: Main.hs
+    source-dirs: benchmarks
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - advent
+      - gauge    
