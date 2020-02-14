@@ -14,17 +14,17 @@ stack run
 #### Running a single puzzle:
 
 ```
-./run solve 1a
+./run solve 01
 ```
 
 Benchmark the puzzle:
 
 ```
-./run bench 1a
+./run bench 01
 ```
 
 Test the puzzle:
 
 ```
-./run test 1a
+./run test 01
 ```
