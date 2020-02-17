@@ -8,6 +8,8 @@ import           Data.Maybe
 type IntMap = IM.IntMap Int 
 type ArithmeticFunction = Int -> Int -> Int
 
+type Noun = Int
+type Verb = Int
 data OpCode = Halt | Error | Add | Mult deriving Show
 
 
@@ -45,4 +47,31 @@ valueAtIndex :: Int -> IntMap -> Int
 valueAtIndex pos im = fromMaybe 0 (IM.lookup pos im)
 
 day02 :: String -> String
-day02 s = show $ head $ fmap snd $ IM.toList $ fromJust $ run (indexed s)
+day02 s = show $ evaluate (indexed s)
+
+evaluate :: IntMap -> Int
+evaluate intmap = head $ fmap snd $ IM.toList $ fromJust $ run intmap
+
+nouns :: [Noun]
+nouns = [0..9]
+
+verbs :: [Verb]
+verbs = [0..9]
+
+iterateIM :: IntMap -> [((Noun, Verb), Int)]
+iterateIM intmap = catMaybes $ do 
+    n <- nouns
+    v <- verbs
+    let intmap' = IM.insert 2 v $ IM.insert 1 n intmap
+    pure $ sequenceA ((n, v), Just (evaluate intmap'))
+
+outputToProduce = 19690720
+
+findNounAndVerb :: [((Noun, Verb), Int)] -> (Noun, Verb)
+findNounAndVerb = fst . head . filter (\(_, result) -> result == outputToProduce)
+
+nounAndVerb s = findNounAndVerb $ iterateIM (indexed s)
+
+day02b :: String -> String
+day02b s = show $ 100 * fst nv + snd nv
+  where nv = nounAndVerb s
