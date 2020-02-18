@@ -53,10 +53,10 @@ evaluate :: IntMap -> Int
 evaluate intmap = head $ fmap snd $ IM.toList $ fromJust $ run intmap
 
 nouns :: [Noun]
-nouns = [0..9]
+nouns = [0..99]
 
 verbs :: [Verb]
-verbs = [0..9]
+verbs = [0..99]
 
 iterateIM :: IntMap -> [((Noun, Verb), Int)]
 iterateIM intmap = catMaybes $ do 

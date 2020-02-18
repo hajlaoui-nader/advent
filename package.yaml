@@ -25,7 +25,8 @@ dependencies:
 - clock
 - mtl
 - split
-
+- attoparsec
+- text
 library:
   source-dirs: src
 
