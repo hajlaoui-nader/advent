@@ -29,12 +29,10 @@ directionParser = (string "U"    >> return Up)
 
 
 instructionParser :: Parser Instruction
-instructionParser = do 
+instructionParser = do
     dir <- directionParser
-    d1 <- decimal
-    return $ Instruction dir d1
-
-
+    Instruction dir <$> decimal
+    
 main :: IO ()
 main = print $ toMaybe $ parseOnly instructionParser "U987"
 
