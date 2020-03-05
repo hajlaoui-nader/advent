@@ -84,7 +84,7 @@ intersection:: (Eq a, Ord a) => S.Set (S.Set a) -> S.Set a
 intersection = foldr1 S.intersection
 
 day03b :: String -> String
-day03b = show . combinedSteps
+day03b = show . minimum . combinedSteps
 
 -- combinedSteps :: String -> S.Set Int
 combinedSteps str = S.map (steps wpts) $ collision
